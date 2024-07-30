@@ -36,4 +36,3 @@ jobs:
           github_token: ${{ secrets.GH_PAT }}
           branch: main
           force: true
-
