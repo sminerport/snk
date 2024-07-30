@@ -1,0 +1,38 @@
+name: Generate Snake
+
+on:
+  schedule: # Run workflow automatically
+    - cron: "0 0 * * *" # every 12 hours
+  workflow_dispatch: # Run workflow manually from the Actions tab
+  push:
+    branches:
+      - main # or master if you use master as default branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Generate Snake
+        uses: Platane/snk@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          output: dist/github-snake.svg
+
+      - name: Add and commit files
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add dist/github-snake.svg
+          git commit -m 'Generate Snake'
+          git push
+
+      - name: Push the generated snake to the GitHub repository
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          force: true
