@@ -6,7 +6,7 @@ on:
   workflow_dispatch: # Run workflow manually from the Actions tab
   push:
     branches:
-      - main # or master if you use master as default branch
+      - main
 
 jobs:
   build:
@@ -19,7 +19,7 @@ jobs:
       - name: Generate Snake
         uses: Platane/snk@master
         with:
-          github_token: ${{ secrets.MY_GITHUB_TOKEN }}
+          github_token: ${{ secrets.GH_PAT }}
           output: dist/github-snake.svg
 
       - name: Add and commit files
@@ -33,6 +33,7 @@ jobs:
       - name: Push the generated snake to the GitHub repository
         uses: ad-m/github-push-action@v0.6.0
         with:
-          github_token: ${{ secrets.MY_GITHUB_TOKEN }}
+          github_token: ${{ secrets.GH_PAT }}
           branch: main
           force: true
+
