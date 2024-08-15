@@ -5,3 +5,4 @@ dist
 !svg-only/dist
 build
 .env
+.vs/
