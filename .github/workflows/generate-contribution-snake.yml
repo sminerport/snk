@@ -1,9 +1,9 @@
 name: Generate GitHub Contribution Snake Animation
 
 on:
-  # run automatically every 5 minutes
+  # run automatically every 24 hours
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "0 */24 * * *" 
 
   # allows to manually run the job at any time
   workflow_dispatch:
