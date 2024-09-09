@@ -84,12 +84,14 @@ jobs:
           outputs: |
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+            dist/github-contribution-grid-snake-reverse.svg?color_snake=#FFD700&color_dots=#000000,#ffcccc,#ff9999,#ff6666,#ff3333
 
       - name: ensure the generated file exists
         run: |
           ls dist
           test -f dist/github-contribution-grid-snake.svg
           test -f dist/github-contribution-grid-snake-dark.svg
+          test -f dist/github-contribution-grid-snake-reverse.svg
 
       - uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
